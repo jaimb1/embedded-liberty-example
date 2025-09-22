@@ -1,9 +1,0 @@
-<server description="Embedded Liberty Server">
-    <featureManager>
-        <feature>servlet-6.0</feature>
-    </featureManager>
-
-    <httpEndpoint id="defaultHttpEndpoint"
-                  host="localhost"
-                  httpPort="${default.http.port}"/>
-</server>

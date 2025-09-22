@@ -4,8 +4,6 @@ import com.ibm.wsspi.kernel.embeddable.Server;
 import com.ibm.wsspi.kernel.embeddable.ServerBuilder;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutionException;
 

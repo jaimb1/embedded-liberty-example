@@ -1,0 +1,16 @@
+<server description="Embedded Liberty Server">
+    <featureManager>
+        <feature>jakartaee-10.0</feature>
+        <feature>cdi-4.0</feature>
+    </featureManager>
+
+    <basicRegistry id="basic" realm="BasicRealm">
+        <!-- <user name="yourUserName" password="" />  -->
+    </basicRegistry>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="localhost"
+                  httpPort="${default.http.port}"/>
+
+    <application id="pocApplication" name="poc-application" location="${poc.server.project.basedir}/../liberty-poc-application/target/liberty-poc-application.war" />
+</server>

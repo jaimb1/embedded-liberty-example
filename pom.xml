@@ -16,15 +16,20 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>liberty-poc</groupId>
     <artifactId>liberty-poc</artifactId>
-    <name>liberty-poc</name>
+    <packaging>pom</packaging>
+    <name>poc</name>
     <description>Experimenting with embedded Liberty server</description>
+    <modules>
+        <module>liberty-poc-application</module>
+        <module>liberty-poc-server</module>
+    </modules>
     <version>1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <version.liberty>25.0.0.9</version.liberty>
     </properties>
@@ -34,7 +39,12 @@
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>
-                <version>6.1.0</version>
+                <version>6.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.platform</groupId>
+                <artifactId>jakarta.jakartaee-api</artifactId>
+                <version>10.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.ibm.websphere.appserver.spi</groupId>
@@ -44,76 +54,4 @@
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.websphere.appserver.spi</groupId>
-            <artifactId>com.ibm.websphere.appserver.spi.kernel.embeddable</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>io.openliberty.tools</groupId>
-                <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.11.5</version>
-                <configuration>
-                    <assemblyArtifact>
-                        <groupId>io.openliberty</groupId>
-                        <artifactId>openliberty-runtime</artifactId>
-                        <version>${version.liberty}</version>
-                        <type>zip</type>
-                    </assemblyArtifact>
-                    <serverName>libertyPoC</serverName>
-                    <include>minify,runnable</include>
-                    <serverXmlFile>${project.basedir}/src/main/resources/server.xml</serverXmlFile>
-                    <features>
-                        <feature>servlet-6.0</feature>
-                    </features>
-                    <bootstrapProperties>
-                        <default.http.port>9081</default.http.port>
-                    </bootstrapProperties>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>package-server</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>create</goal>
-                            <goal>install-feature</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.7.1</version>
-                <executions>
-                    <execution>
-                        <id>create-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>poc.WebServer</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

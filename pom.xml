@@ -21,6 +21,7 @@
     <description>Experimenting with embedded Liberty server</description>
     <modules>
         <module>liberty-poc-application</module>
+        <module>internal-application</module>
         <module>liberty-poc-server</module>
     </modules>
     <version>1.0</version>

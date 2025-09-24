@@ -4,13 +4,36 @@
         <feature>cdi-4.0</feature>
     </featureManager>
 
-    <basicRegistry id="basic" realm="BasicRealm">
-        <!-- <user name="yourUserName" password="" />  -->
-    </basicRegistry>
-
     <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="${default.http.port}"
+                  protocolVersion="http/1.1"/>
+    <httpEndpoint id="localhostHttpEndpoint"
                   host="localhost"
-                  httpPort="${default.http.port}"/>
+                  httpPort="${internal.http.port}"
+                  protocolVersion="http/1.1"/>
 
-    <application id="pocApplication" name="poc-application" location="${poc.server.project.basedir}/../liberty-poc-application/target/liberty-poc-application.war" />
+    <virtualHost id="pocAppVHost">
+        <hostAlias>*:${default.http.port}</hostAlias>
+    </virtualHost>
+    <!-- allowFromEndpointRef adds a constraint at the system network interface layer -->
+    <!-- as opposed to specifying a localhost:<port> hostAlias entry which matches -->
+    <!-- against the host header only -->
+    <virtualHost id="internalAppVHost" allowFromEndpointRef="localhostHttpEndpoint">
+        <hostAlias>*:${internal.http.port}</hostAlias>
+    </virtualHost>
+
+    <webApplication id="pocApplication"
+                    contextRoot="poc-application"
+                    location="${poc.server.project.basedir}/../liberty-poc-application/target/liberty-poc-application.war">
+        <web-bnd>
+            <virtual-host name="pocAppVHost"/>
+        </web-bnd>
+    </webApplication>
+    <webApplication id="internalApplication"
+                    contextRoot="internal-application"
+                    location="${poc.server.project.basedir}/../internal-application/target/internal-application.war">
+        <web-bnd>
+            <virtual-host name="internalAppVHost"/>
+        </web-bnd>
+    </webApplication>
 </server>

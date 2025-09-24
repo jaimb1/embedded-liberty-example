@@ -74,6 +74,7 @@
                     </features>
                     <bootstrapProperties>
                         <default.http.port>9081</default.http.port>
+                        <internal.http.port>9082</internal.http.port>
                         <poc.server.project.basedir>${project.basedir}</poc.server.project.basedir>
                     </bootstrapProperties>
                 </configuration>

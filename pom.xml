@@ -23,6 +23,7 @@
         <module>liberty-poc-application</module>
         <module>internal-application</module>
         <module>liberty-poc-server</module>
+        <module>shared-library</module>
     </modules>
     <version>1.0</version>
 
@@ -37,6 +38,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>liberty-poc</groupId>
+                <artifactId>shared-library</artifactId>
+                <version>1.0</version>
+            </dependency>
             <dependency>
                 <groupId>jakarta.servlet</groupId>
                 <artifactId>jakarta.servlet-api</artifactId>

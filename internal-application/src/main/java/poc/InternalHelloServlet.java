@@ -3,15 +3,21 @@ package poc;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.shared.library.SharedService;
 
 import java.io.IOException;
 
 public class InternalHelloServlet extends HttpServlet {
+  final SharedService sharedService;
+
+  public InternalHelloServlet(final SharedService sharedService) {
+    this.sharedService = sharedService;
+  }
 
   @Override
   protected void doGet(final HttpServletRequest req, final HttpServletResponse resp)
       throws IOException {
     resp.setContentType("text/plain");
-    resp.getWriter().println("Hello from internal application!");
+    resp.getWriter().println(this.sharedService.getHello(InternalHelloServlet.class.getSimpleName()));
   }
 }

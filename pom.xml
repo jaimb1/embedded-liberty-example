@@ -40,6 +40,11 @@
         <dependencies>
             <dependency>
                 <groupId>liberty-poc</groupId>
+                <artifactId>liberty-poc-server</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>liberty-poc</groupId>
                 <artifactId>shared-library</artifactId>
                 <version>1.0</version>
             </dependency>

@@ -21,6 +21,10 @@
     <dependencies>
         <dependency>
             <groupId>liberty-poc</groupId>
+            <artifactId>liberty-poc-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>liberty-poc</groupId>
             <artifactId>shared-library</artifactId>
         </dependency>
         <dependency>

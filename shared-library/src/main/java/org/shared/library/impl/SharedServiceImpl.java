@@ -1,13 +1,9 @@
 package org.shared.library.impl;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Default;
 import org.shared.library.SharedService;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Default
-@ApplicationScoped
 public class SharedServiceImpl implements SharedService {
   final static AtomicInteger instanceCount = new AtomicInteger(0);
 
